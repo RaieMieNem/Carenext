@@ -1,0 +1,502 @@
+/* ===============================================
+   GLOBAL STYLES
+=============================================== */
+
+/* Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Collapsible Box */
+.collapsible-box {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.collapsible-box.visible {
+    max-height: max-content;
+    opacity: 1;
+}
+
+
+/***********           MAIN          **************/
+
+/* Main Section */
+.main {
+    background-color: rgb(var(--secondary-color));
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    padding-bottom: 50px;
+}
+
+/* Main Container */
+.main__container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/***********           HERO          **************/
+
+/* Hero Section */
+.main__hero {
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    background-color: rgb(var(--primary-color));
+    justify-content: center;
+    height: 150px;
+    font-family: var(--Kaisei);
+    font-weight: 500;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
+}
+
+.main__hero-title {
+    display: flex;
+    max-width: 4096px;
+    width: 100%;
+    color: rgb(var(--third-color));
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.main__hero-description{
+    display: flex;
+    text-align: center;
+    color: rgb(var(--secondary-color));
+}
+
+/***********           ETOILES          **************/
+
+.etoile {
+    color: red;
+}
+
+/***********           FORM          **************/
+
+/* Form Section */
+.situation__form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.situation__form__container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+/***********           FORM INTRO          **************/
+
+.situation___form__intro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 0;
+    text-align: start;
+}
+
+.situation__form__intro__obligatoire {
+    font-size: var(--body-font-size);
+    text-align: start;
+}
+
+.situation__form__intro__name {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.situation__form__intro__name-label {
+    font-size: 16px;
+    color: rgb(var(--primary-color));
+    margin-bottom: 0.5rem;
+}
+
+.situation__form__intro__name input[type="text"] {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.situation__form__intro__name input[type="text"]::placeholder {
+    color: #aaa;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.situation__form__intro__name input[type="text"]:focus {
+    border-color: #666;
+    outline: none;
+}
+
+/***********           FORM SECTIONS UP          **************/
+
+.situation__form__up {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: solid 1px rgb(var(--primary-color), 0.4);
+}
+
+.situation__form__title-text {
+    font-family: var(--Kaisei);
+    font-size: 18px;
+}
+
+.arrow-down {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.situation__form__section.active .arrow-down {
+    transform: rotate(180deg);
+}
+
+.situation__form__title-detail-text {
+    font-family: var(--Kaisei);
+    font-weight: 400;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/***********           FORM SECTIONS CONTENT          **************/
+
+.situation__form__section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.situation__form__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    gap: 15px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.situation__form__content.collapsed {
+    max-height: 0;
+    padding-top: 0;
+    gap: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Rotating Arrow */
+.arrow-down.rotated {
+    transform: rotate(180deg);
+}
+
+/***********           FORM SECTIONS BOXES          **************/
+
+/* Text Input Box */
+.situation__form__box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.situation__form_content_pairs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.situation__form__box-label {
+    font-size: 16px;
+    color: rgb(var(--primary-color));
+    margin-bottom: 0.5rem;
+}
+
+.situation__form__box input[type="text"] {
+    width: 90%;
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.situation__form__box input[type="text"]::placeholder {
+    color: #aaa;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.situation__form__box input[type="text"]:focus {
+    border-color: rgb(var(--primary-color));
+    outline: none;
+}
+
+/***********           FORM SELECT BOX          **************/
+
+.select-box {
+    position: relative;
+}
+
+.select-box select {
+    width: 90%;
+    padding: 10px 15px;
+    padding-left: 30px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 16px;
+    color: rgb(var(--primary-color));
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('/arrow-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.select-box select:invalid {
+    color: #aaa;
+    font-size: 14px;
+    font-style: italic;
+    padding-left: 20px;
+}
+
+.select-box select:focus {
+    border-color: rgb(var(--primary-color));
+    outline: none;
+}
+
+/* Date Picker */
+#date-naissance {
+    width: 90%;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 16px;
+    color: rgb(var(--primary-color));
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+/***********           FORM NUMBER INPUTS          **************/
+
+.situation__form__box input[type="number"] {
+    width: 90%;
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/***********           AMORTISSEMENT TABLE          **************/
+
+.amortissement {
+    display: none;
+    width: 90%;
+    max-width: 100%;
+    background-color: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    overflow-x: auto;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease;
+    padding-top: 30px;
+    margin: 0;
+}
+
+.amortissement.visible {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    transform: translateY(0);
+    margin: 0 auto;
+}
+
+.amortissement table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+    border-radius: 1rem;
+}
+
+/* Table Header */
+.amortissement thead {
+    background-color: rgb(var(--primary-color));
+    color: rgb(var(--third-color));
+}
+
+.amortissement th,
+.amortissement td {
+    padding: 0rem 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    height: 2rem;
+}
+
+.amortissement th {
+    padding: 0.5rem 0.5rem;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.amortissement td:last-child {
+    border-right: 0;
+}
+
+.amortissement td:first-child {
+    border-left: 0;
+}
+
+/* Table Borders (First/Last Rows) */
+.amortissement thead tr th:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+.amortissement thead tr th:last-child {
+    border-top-right-radius: 0.5rem;
+}
+
+.amortissement tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5rem;
+}
+
+.amortissement tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5rem;
+}
+
+/* Table Row Styles */
+.amortissement tbody tr:nth-child(even) {
+    background-color: rgb(var(--third-color), 0.7);
+}
+
+.amortissement tbody tr:hover {
+    background-color: rgb(var(--primary-color), 0.9);
+    color: rgb(var(--third-color));
+    transition: background-color 0.2s ease-in-out;
+    font-weight: 600;
+}
+
+/***********           FORM DETAIL FINANCEMENT          **************/
+
+.situation__form-detail-financement {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+/* RESPONSIVE */
+/***********          0-600 px   Téléphones      **************/ 
+
+@media(max-width: 600px){
+
+    .main__hero {
+        height: 150px;
+    }
+    
+    .main__hero-title {
+        padding: 5px;
+        font-size: 20px;
+    }
+
+    .main__hero-description{
+        font-size: 13px;
+    }
+    
+    .situation__form_content_pairs{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .situation__form__intro__name input[type="text"] {
+        max-width: 95%;
+    }
+
+    .amortissement {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: auto; /* Garde le scroll si besoin */
+        width: 100%;
+        min-width: 300px;
+        max-width: 100%;
+        box-sizing: border-box; /* important */
+    }
+
+    .amortissement table {
+        width: 100%;
+        max-width: 100%;
+        min-width: 300px; /* à adapter selon ton design */
+        box-sizing: border-box;
+    }
+      
+
+    .amortissement th,
+    .amortissement td {
+      text-align: center;
+      font-size: 0.6rem;
+      border: 1px solid #ddd;
+    }
+
+    .amortissement th{
+        font-size: 0.5rem;
+    }
+
+    .amortissement-annee {
+        width: 10%;
+    }
+    
+    .amortissement-interets {
+        width: 10%;
+        min-width: 20px;
+    }
+    
+    .amortissement-assurance {
+        width: 15%;
+        max-width: 40px;
+    }
+    
+    .amortissement-cap-cumulee,
+    .amortissement-cap-restant {
+        width: 20%;
+        min-width: 40px;
+    }
+}

@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* --- VARIABLES GLOBALES --- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --inter: "Inter", sans-serif;
+  --Kaisei: "Kaisei Tokumin", serif;
+
+  --primary-color: 0, 0, 0;
+  --secondary-color: 255, 255, 255;
+  --third-color: 254, 248, 215;
+
+  --headline-font-size: 42px;
+  --headline-font-weight: 700;
+
+  --subheadline-font-size: 22px;
+  --subheadmine-font-weight: 400;
+
+  --body-font-size: 12px;
+}
+
+/* --- DARK MODE --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* --- CUSTOM THEME FOR TAILWIND (OPTIONAL, if you use it in config) --- */
+@layer base {
+  :root {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--inter);
+    --font-serif: var(--Kaisei);
+  }
+}
+
+
+html,
+body{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
