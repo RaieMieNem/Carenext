@@ -1,67 +1,71 @@
 'use client'
+
+import { useSession, signOut } from "next-auth/react"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Header from "../_sections/header"
 import Footer from "../_sections/footer"
-import { useSession } from "next-auth/react"
-import Link from "next/link"
-import Image from "next/image"
-import { signOut } from "next-auth/react"
 
-
-// Composant principal qui gère l'affichage conditionnel en fonction de la session
+// Composant principal de la page Dashboard
 const DashboardPage = () => {
-    // Récupère les données de session via next-auth
-    const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
+  useEffect(() => {
+    // Redirection automatique si l'utilisateur n'est pas connecté
+    if (status === 'unauthenticated') {
+      router.push('/auth/login');
+    }
+  }, [status, router]);
+
+  // Pendant le chargement de la session
+  if (status === 'loading') {
     return (
-        <>
-            {session?.user ? (
-                // Si l'utilisateur est connecté (session et user existent)
-                <>
-                    <Header />         {/* Affiche l'en-tête */}
-                    <Dashboard />      {/* Affiche le contenu du dashboard */}
-                    <Footer />         {/* Affiche le pied de page */}
-                </>
-            ) : (
-                // Si l'utilisateur n'est pas connecté, propose un bouton vers la page de login
-                <div className="flex flex-col justify-center items-center w-full h-full bg-black gap-10">
-                    <div className="flex w-full text-white justify-center">
-                        Vous n'êtes pas connecté ! 
-                    </div>
-                    <div>
-                        <Link href="/auth/login">
-                            <button className="text-white">Connexion</button>
-                        </Link>
-                    </div>
-                </div>
-            )}
-        </>
+      <div className="flex justify-center items-center h-screen bg-black text-white text-xl">
+        Chargement...
+      </div>
     );
+  }
+
+  return (
+    <>
+      <Header />
+
+      {session?.user && <Dashboard />}
+
+      <Footer />
+    </>
+  );
 };
 
+// Composant affiché lorsque l'utilisateur est connecté
 const Dashboard = () => {
-    const { data: session } = useSession();
+  const { data: session } = useSession();
 
-    return (
-        <>
-            <div className="flex flex-col justify-center items-center w-full h-full gap-20 text-xl 2xl:text-3xl bg-black"> 
-                <div className="text-white">
-                    Bienvenue
-                        {session?.user?.name && (
-                        <span> {session.user.name} !</span>
-                        )}
-                </div>
-                <div className="text-white">
-                    Tu es bien connecté(e)
-                </div>
-                <div>
-                    <button onClick={() => signOut()} className="text-white">
-                        Déconnexion
-                    </button>
-                </div>
+  const handleSignOut = () => {
+    // Redirige vers la page de connexion après déconnexion
+    signOut({ callbackUrl: '/auth/login' });
+  };
 
-            </div>
-        </>
-    );
+  return (
+    <div className="flex flex-col justify-center items-center w-full h-full gap-20 text-xl 2xl:text-3xl bg-black">
+      <div className="flex justify-center text-white w-full">
+        Bienvenue
+        {session?.user?.name && (
+          <span className="ml-2">{session.user.name} !</span>
+        )}
+      </div>
+
+      <div className="flex w-full text-white text-center items-center justify-center">
+        Tu es bien connecté(e) <br />
+        (tqt on fera une page bien propre ici aussi)
+      </div>
+
+      <button onClick={handleSignOut} className="w-full text-white hover:underline">
+        Déconnexion
+      </button>
+    </div>
+  );
 };
 
-export default DashboardPage
+export default DashboardPage;
