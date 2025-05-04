@@ -12,6 +12,7 @@ model User {
   name          String?
   email         String?         @unique
   emailVerified DateTime?
+  password       String?   // on autorise null si le compte est OAuth
   image         String?
   accounts      Account[]
   sessions      Session[]

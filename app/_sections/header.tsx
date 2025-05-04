@@ -64,9 +64,11 @@ const Nav_Auth = () => {
           Connexion
         </button>
       </Link>
-      <button className="cursor-pointer px-[12px] py-[10px] text-[12px] bg-black text-white rounded-[20px] border border-black hover:bg-[#DDDDDD] hover:text-black transition-all 2xl:text-[14px]">
-        Essayer CareInvest
-      </button>
+      <Link href="auth/register">
+        <button className="cursor-pointer px-[12px] py-[10px] text-[12px] bg-black text-white rounded-[20px] border border-black hover:bg-[#DDDDDD] hover:text-black transition-all 2xl:text-[14px]">
+          Essayer CareInvest
+        </button>
+      </Link>
     </div>
   );
 };
