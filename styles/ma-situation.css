@@ -84,6 +84,7 @@
 
 /* Form Section */
 .situation__form {
+    min-width: 800px;
     width: 100%;
     display: flex;
     justify-content: center;
