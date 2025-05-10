@@ -142,7 +142,7 @@ const featuresData = [
 //**********  MAIN-DETAILS ********** //
 const MainDetails = () => {
     return(
-        <div className='w-full h-[1000px] text-blue-50'>
+        <div className='w-full h-[1000px] text-blue-500'>
             a compléter plus tard
         </div>
     )

@@ -62,7 +62,7 @@ const LoginForm = () => {
                     </span>
                     <input 
                         type="email" 
-                        id="email" 
+                        htmlFor="email" 
                         className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" 
                         required 
                         value={email}
@@ -79,7 +79,7 @@ const LoginForm = () => {
                     </span>
                     <input 
                         type="password" 
-                        id="password" 
+                        htmlFor="password" 
                         className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" 
                         required 
                         value={password}

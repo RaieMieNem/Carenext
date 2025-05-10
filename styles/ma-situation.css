@@ -200,19 +200,6 @@
     transition: max-height 0.4s ease-in-out;
 }
 
-.situation__form__content.collapsed {
-    max-height: 0;
-    padding-top: 0;
-    gap: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-/* Rotating Arrow */
-.arrow-down.rotated {
-    transform: rotate(180deg);
-}
-
 /***********           FORM SECTIONS BOXES          **************/
 
 /* Text Input Box */

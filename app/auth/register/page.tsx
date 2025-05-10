@@ -62,7 +62,7 @@ const RegisterForm = () => {
                     <span className="absolute right-[8px] top-[12px] leading-[57px] text-lg">
                         <Image src="/mail-logo.svg" alt="mail-logo" width={20} height={20} />
                     </span>
-                    <input type="email" id="email" name="email" className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" required />
+                    <input type="email" htmlFor="email" name="email" className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" required />
                     <label className="[font-family:var(--Kaisei)] text-[rgba(var(--secondary-color))] duration-400 text-base absolute top-1/2 left-[5px] translate-y-[-50%] pointer-events-none peer-focus:top-[-5px] peer-valid:top-[-5px] transition-all" htmlFor="email">
                         Email
                     </label>
@@ -72,7 +72,7 @@ const RegisterForm = () => {
                     <span className="absolute right-[8px] top-[12px] leading-[57px] text-lg">
                         <Image src="/password-logo.svg" alt="password-logo" width={20} height={20} />
                     </span>
-                    <input type="password" id="password" name="password" className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" required />
+                    <input type="password" htmlFor="password" name="password" className="pr-[35px] pl-[5px] peer w-full h-[50px] bg-[transparent] border-none outline-none text-base text-[rgba(var(--secondary-color))]" required />
                     <label className="[font-family:var(--Kaisei)] transition-all duration-400 peer-focus:top-[-5px] peer-valid:top-[-5px] text-[rgba(var(--secondary-color))] text-base absolute top-1/2 left-[5px] translate-y-[-50%] pointer-events-none" htmlFor="password">
                         Password
                     </label>

@@ -116,11 +116,11 @@ const SituationFormEtatCivil = () => {
                     <div className="situation__form_content_pairs">
                         <div className="situation__form__box">
                         <label htmlFor="nom_prenom" className="situation__form__box-label">Nom et Prénom</label>
-                        <input type="text" placeholder="NOM Prénom" name="nom_prenom" id="nom_prenom" />
+                        <input type="text" placeholder="NOM Prénom" name="nom_prenom" htmlFor="nom_prenom" />
                         </div>
                         <div className="situation__form__box">
                         <label htmlFor="date-naissance" className="situation__form__box-label">Date de naissance</label>
-                        <input type="text" id="date-naissance" name="date-naissance" placeholder="jj/mm/aaaa" />
+                        <input type="text" htmlFor="date-naissance" name="date-naissance" placeholder="jj/mm/aaaa" />
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@ const SituationFormEtatCivil = () => {
                             Situation matrimoniale <span className="etoile">*</span>
                         </label>
                         <div className="select-box">
-                            <select id="matrimonial-select" name="situation-matrimoniale" required defaultValue="">
+                            <select htmlFor="matrimonial-select" name="situation-matrimoniale" required defaultValue="">
                                 <option value="" disabled>Sélectionnez votre statut</option>
                                 <option value="marie">Marié(e)</option>
                                 <option value="celibataire">Célibataire</option>
@@ -206,20 +206,20 @@ const SituationFormRevenus = () => {
                             className="euro-input"
                             type="text"
                             inputMode="numeric"
-                            id="Revenu-net"
+                            htmlFor="Revenu-net"
                             name="revenu-net"
                             placeholder="0 €"
                             min="0"
                             />
                         </div>
 
-                        <div id="conjoint-income-box" className="situation__form__box collapsible-box">
+                        <div htmlFor="conjoint-income-box" className="situation__form__box collapsible-box">
                             <label htmlFor="Revenu-net-conjoint" className="situation__form__box-label">Revenu net imposable conjoint(e)</label>
                             <input
                             className="euro-input"
                             type="text"
                             inputMode="numeric"
-                            id="Revenu-net-conjoint"
+                            htmlFor="Revenu-net-conjoint"
                             name="Revenu-net-conjoint(e)"
                             placeholder="0 €"
                             />
@@ -244,7 +244,7 @@ const SituationFormResidence = () => {
                     <div className="situation__form__box">
                         <label className="situation__form__box-label">Type de résidence <span className="etoile">*</span></label>
                         <div className="select-box">
-                            <select id="residence-select" required defaultValue="">
+                            <select htmlFor="residence-select" required defaultValue="">
                                 <option value="" disabled>Propriétaire/Locataire/Logé(e)</option>
                                 <option value="Proprietaire">Propriétaire</option>
                                 <option value="Locataire">Locataire</option>
@@ -252,17 +252,17 @@ const SituationFormResidence = () => {
                             </select>
                         </div>
                     </div>
-                    <div id="loyer-box" className="situation__form__box collapsible-box">
+                    <div htmlFor="loyer-box" className="situation__form__box collapsible-box">
                         <label className="situation__form__box-label">Loyer</label>
                         <input className="euro-input" type="text" inputMode="numeric" placeholder="1 200 €" />
                     </div>
                     </div>
 
-                    <div id="proprietaire-fields" className="situation__form_content_pairs collapsible-box">
+                    <div htmlFor="proprietaire-fields" className="situation__form_content_pairs collapsible-box">
                     <div className="situation__form__box">
                         <label className="situation__form__box-label">Type de financement <span className="etoile">*</span></label>
                         <div className="select-box">
-                            <select id="type-financement" required defaultValue="">
+                            <select htmlFor="type-financement" required defaultValue="">
                                 <option value="" disabled>Crédit/Financé</option>
                                 <option value="credit">Crédit en cours</option>
                                 <option value="finance">Entièrement financé</option>
@@ -272,15 +272,15 @@ const SituationFormResidence = () => {
                     </div>
                     <div className="situation__form__box">
                         <label className="situation__form__box-label">Charge(s) annuelle(s)</label>
-                        <input className="euro-input" type="text" inputMode="numeric" placeholder="60 000 €" id="charges-annuelles" name="charges-annuelles" />
+                        <input className="euro-input" type="text" inputMode="numeric" placeholder="60 000 €" htmlFor="charges-annuelles" name="charges-annuelles" />
                     </div>
                     <div className="situation__form__box">
                         <label className="situation__form__box-label">Valeur du bien</label>
-                        <input id="valeur-bien" name="valeur-bien" className="euro-input" type="text" inputMode="numeric" placeholder="300 000 €" />
+                        <input htmlFor="valeur-bien" name="valeur-bien" className="euro-input" type="text" inputMode="numeric" placeholder="300 000 €" />
                     </div>
                     </div>
 
-                    <div id="detail-financment-fields" className="situation__form__section collapsible-box situation__form-detail-financement">
+                    <div htmlFor="detail-financment-fields" className="situation__form__section collapsible-box situation__form-detail-financement">
                         <CollapsibleSection 
                         title="Détail difinancement crédit"
                         titleClassName="situation__form__title-text situation__form__title-detail-text"
@@ -289,11 +289,11 @@ const SituationFormResidence = () => {
                                 <div className="situation__form_content_pairs">
                                 <div className="situation__form__box">
                                     <label className="situation__form__box-label">Date d'emprunt</label>
-                                    <input type="text" name="date-emprunt" id="date-emprunt" placeholder="jj/mm/aaaa" />
+                                    <input type="text" name="date-emprunt" htmlFor="date-emprunt" placeholder="jj/mm/aaaa" />
                                 </div>
                                 <div className="situation__form__box">
                                     <label className="situation__form__box-label">Montant emprunté</label>
-                                    <input className="euro-input" type="text" inputMode="numeric" placeholder="300 000 €" id="montant-emprunt" name="montant-emprunt" />
+                                    <input className="euro-input" type="text" inputMode="numeric" placeholder="300 000 €" htmlFor="montant-emprunt" name="montant-emprunt" />
                                 </div>
                                 </div>
 
@@ -303,7 +303,7 @@ const SituationFormResidence = () => {
                                 <div className="situation__form__box">
                                     <label className="situation__form__box-label">Durée d'emprunt</label>
                                     <div className="select-box">
-                                    <select id="durée-emprunt" required>
+                                    <select htmlFor="durée-emprunt" required>
                                         <option value="" disabled hidden>25 ans</option>
                                         {[...Array(25)].map((_, i) => {
                                         const year = 25 - i;
@@ -319,7 +319,7 @@ const SituationFormResidence = () => {
                                     type="text"
                                     inputMode="decimal"
                                     placeholder="2.43 %"
-                                    id="taux-emprunt"
+                                    htmlFor="taux-emprunt"
                                     name="taux-emprunt"
                                     pattern="[0-9]*[.,]?[0-9]*"
                                     />
@@ -335,20 +335,20 @@ const SituationFormResidence = () => {
                                     inputMode="decimal"
                                     placeholder="0.96%"
                                     name="taux-assurances"
-                                    id="taux-assurances"
+                                    htmlFor="taux-assurances"
                                     pattern="[0-9]*[.,]?[0-9]*"
                                     />
                                 </div>
                                 <div className="situation__form__box">
                                     <label className="situation__form__box-label">Mensualité estimée</label>
-                                    <input type="text" id="mensualité" readOnly placeholder="0 €" />
+                                    <input type="text" htmlFor="mensualité" readOnly placeholder="0 €" />
                                 </div>
                                 </div>
                             </div>
                         </CollapsibleSection>
                     </div>
 
-                    <div id="amortissement-section" className="situation__form__section collapsible-box">
+                    <div htmlFor="amortissement-section" className="situation__form__section collapsible-box">
                     <CollapsibleSection 
                         title="Tableau d'amortissement"
                         defaultOpen={false}
@@ -366,7 +366,7 @@ const SituationFormResidence = () => {
                             <th className="amortissement-cap-restant">Capital Restant dû</th>
                             </tr>
                         </thead>
-                        <tbody id="amortissement-body"></tbody>
+                        <tbody htmlFor="amortissement-body"></tbody>
                         </table>
                     </div>
                     </CollapsibleSection>
