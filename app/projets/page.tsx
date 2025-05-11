@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import Header from '../_sections/header';
-import Footer from '../_sections/footer';
-
+import Header from '@/components/sections/header';
+import Footer from '@/components/sections/footer';
 
 const SituationProjet = () => {
     return (

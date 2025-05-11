@@ -1,71 +1,69 @@
-'use client'
+import { AppSidebar } from "@/components/app-sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-import { useSession, signOut } from "next-auth/react"
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-import Header from "../_sections/header"
-import Footer from "../_sections/footer"
-
-// Composant principal de la page Dashboard
-const DashboardPage = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    // Redirection automatique si l'utilisateur n'est pas connecté
-    if (status === 'unauthenticated') {
-      router.push('/auth/login');
-    }
-  }, [status, router]);
-
-  // Pendant le chargement de la session
-  if (status === 'loading') {
-    return (
-      <div className="flex justify-center items-center h-screen bg-black text-white text-xl">
-        Chargement...
-      </div>
-    );
+export default async function Page() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    return <div>Not authenticated</div>;
   }
+
+  const user = session.user;
 
   return (
     <>
-      <Header />
 
-      {session?.user && <Dashboard />}
-
-      <Footer />
+    <SidebarProvider>
+      <AppSidebar user={user} />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    Building Your Application
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="bg-muted/50 aspect-video rounded-xl" />
+            <div className="bg-muted/50 aspect-video rounded-xl" />
+            <div className="bg-muted/50 aspect-video rounded-xl" />
+          </div>
+          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
     </>
   );
-};
-
-// Composant affiché lorsque l'utilisateur est connecté
-const Dashboard = () => {
-  const { data: session } = useSession();
-
-  const handleSignOut = () => {
-    // Redirige vers la page de connexion après déconnexion
-    signOut({ callbackUrl: '/auth/login' });
-  };
-
-  return (
-    <div className="flex flex-col justify-center items-center w-full h-full gap-20 text-xl 2xl:text-3xl bg-black">
-      <div className="flex justify-center text-white w-full">
-        Bienvenue
-        {session?.user?.name && (
-          <span className="ml-2">{session.user.name} !</span>
-        )}
-      </div>
-
-      <div className="flex w-full text-white text-center items-center justify-center">
-        Tu es bien connecté(e) <br />
-        (tqt on fera une page bien propre ici aussi)
-      </div>
-
-      <button onClick={handleSignOut} className="w-full text-white hover:underline">
-        Déconnexion
-      </button>
-    </div>
-  );
-};
-
-export default DashboardPage;
+}

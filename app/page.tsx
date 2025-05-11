@@ -1,8 +1,10 @@
-'use client'
-import Header from "./_sections/header"
-import Footer from "./_sections/footer";
+import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import Link from "next/link";
+import Header from "@/components/sections/header";
+import Footer from "@/components/sections/footer";
 import Image from 'next/image';
-import Link from 'next/link';
 import {Typewriter, Cursor} from "react-simple-typewriter"
 
 /* // STRUCTURE DE LA PAGE 
@@ -14,8 +16,25 @@ import {Typewriter, Cursor} from "react-simple-typewriter"
     - Footer
 */
 
+export default async function Home() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  return (
+    <div>
+        <LandingPage/>
+
+      {session && (
+        <Button asChild>
+          <Link href={"/dashboard"}>Dashboard</Link>
+        </Button>
+      )}
+    </div>
+  );
+}
+
 //**********  PAGE-COMPLETE ********** //
-export default function Home() {
+const LandingPage = () => {
   return (
     <>
       <Header />
@@ -51,9 +70,10 @@ const MainHero = () => {
 
             <div className="flex flex-col items-center gap-3 sm:gap-6">
                 <p className="pt-10 2xl:pt-20  text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-medium  text-[rgba(var(--third-color))]">
-                    Etudiez votre 
+                    Etudiez votre {/*}
                     <Typewriter typeSpeed={50} words={[" projet locatif"," capacité d'emprunt"," mensualité"," rendement locatif"," fiscalité"," imposition"]} loop={0}/>
-                    <span><Cursor/> </span></p>
+                    <span><Cursor/> </span> {*/} projet locatif de A à Z</p> 
+
                 <p className="hidden sm:block text-base lg:text-lg 2xl:text-xl text-[rgba(var(--secondary-color))]">
                     Care Invest, votre outil de simulations pour maîtriser<br />
                     les enjeux fiscaux et financiers de votre projet locatif
@@ -142,8 +162,8 @@ const featuresData = [
 //**********  MAIN-DETAILS ********** //
 const MainDetails = () => {
     return(
-        <div className='w-full h-[1000px] text-blue-500'>
-            a compléter plus tard
+        <div className='w-full h-[1000px] text-black'>
+            A compléter plus tard
         </div>
     )
 }

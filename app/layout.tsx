@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Kaisei_Tokumin } from "next/font/google";
-import SessionWrapper from "@/lib/SessionWrapper";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,11 +27,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${kaisei_tokumin.variable} antialiased`}
       >
-        <SessionWrapper>
 
         {children}
-
-        </SessionWrapper>
 
       </body>
     </html>

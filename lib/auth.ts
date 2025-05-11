@@ -1,49 +1,57 @@
-import NextAuth from "next-auth"
-import authConfig from "./auth.config"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { prisma } from "@/lib/prisma";
+import { nextCookies } from "better-auth/next-js";
+import { sendEmail } from "./email";
+import { env } from "../env";
 
-const prisma = new PrismaClient();
- 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-    adapter: PrismaAdapter(prisma),
-    ...authConfig
-})
-
-
-
-
-
-
-
-
-
-/* Ancien
-
-import { NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import {PrismaAdapter} from "@next-auth/prisma-adapter"
-import {prisma} from "@/lib/db"
-
-export const authOptions: NextAuthOptions = {
-    debug: true,
-    adapter : PrismaAdapter(prisma),
-    providers: [
-        GithubProvider({
-            clientId : process.env.GITHUB_ID as string,
-            clientSecret : process.env.GITHUB_SECRET as string,
-        }),
-        GoogleProvider({
-            clientId : process.env.GOOGLE_CLIENT_ID as string,
-            clientSecret : process.env.GOOGLE_CLIENT_SECRET as string,            
-        }),
-    ],
-    /*
-    pages: {
-        signIn: "/auth/login",
+export const auth = betterAuth({
+  database: prismaAdapter(prisma, {
+    provider: "sqlite",
+  }),
+  emailAndPassword: {
+    enabled: true,
+    // disableSignUp: false,
+    // requireEmailVerification: true,
+    account: {
+      accountLinking: {
+        enabled: true,
+      },
     },
-    */
+    minPasswordLength: 4,
+    // maxPasswordLength: 128,
+    // autoSignIn: true,
+    sendResetPassword: async ({ user, url }) => {
+      // Send reset password email
 
+      await sendEmail({
+        to: user.email,
+        subject: "Reset your password",
+        text: `Click the link to reset your password: ${url}`,
+      });
+    },
+    resetPasswordTokenExpiresIn: 3600, // 1 hour
+    // password: {
+    //   hash: async (password) => {
+    //     // Custom password hashing
+    //     return hashedPassword;
+    //   },
+    //   verify: async ({ hash, password }) => {
+    //     // Custom password verification
+    //     return isValid;
+    //   },
+    // },
+  },
+  socialProviders: {
+    github: {
+      clientId: env.GITHUB_CLIENT_ID as string,
+      clientSecret: env.GITHUB_CLIENT_SECRET as string,
+    },
+    google: {
+      clientId: env.GOOGLE_CLIENT_ID as string,
+      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
 
-
+  plugins: [nextCookies()],
+});

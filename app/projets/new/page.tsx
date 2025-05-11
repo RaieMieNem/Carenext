@@ -1,11 +1,11 @@
 
 'use client'
-import Header from "@/app/_sections/header"
-import Footer from "@/app/_sections/footer"
+import Header from '@/components/sections/header';
+import Footer from '@/components/sections/footer';
 import React from 'react';
 // Import des fonctions de formatage pour les inputs
 import { useFormLogicProjet } from "@/hooks/useFormLogicProjet";
-import CollapsibleSection from "@/app/_components/collapsible-section";
+import CollapsibleSection from '@/components/collapsible-section';
 import { useState } from "react";
 
 import '@/styles/ma-situation.css';
@@ -340,7 +340,7 @@ const ProjetFormAcquisition = () => {
                         </CollapsibleSection>
                     </div>
 
-                    <div htmlFor="amortissement-section" className="situation__form__section collapsible-box">
+                    <div id="amortissement-section" className="situation__form__section collapsible-box">
                     <CollapsibleSection 
                         title="Tableau d'amortissement"
                         defaultOpen={false}
